@@ -3,5 +3,5 @@
 #### 命令行
 
 npm install  
-node app.js
+node app.js  
 浏览器打开 index.html

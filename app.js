@@ -1,11 +1,11 @@
 var express = require("express");
-var bodyParser = require("body-parser");
+var bodyParser = require("body-parser"); //解析参数
 var cors = require("cors");
 var app = express();
 
-// app.use(cors()); //解决跨域
-app.use(bodyParser.json()); //数据JSON类型
-app.use(bodyParser.urlencoded({ extended: false })); //解析post请求数据
+// app.use(cors()); //cors跨域
+app.use(bodyParser.json()); //json请求
+app.use(bodyParser.urlencoded({ extended: false })); //表单请求
 
 app.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

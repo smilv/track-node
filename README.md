@@ -1,4 +1,4 @@
-### jquery ajax 调用 nodejs 接口
+### jquery ajax 调用 nodejs 接口 操作 mysql
 
 #### 命令行
 

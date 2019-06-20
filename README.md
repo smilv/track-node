@@ -3,5 +3,6 @@
 #### 命令行
 
 npm install  
-node app.js  
+实时更新 npm start  
+运行 node api.js
 浏览器打开 index.html

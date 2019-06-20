@@ -16,6 +16,7 @@
                 data: JSON.stringify({ name: "xu", foo: "bar" }),
                 success: function(data) {
                     console.log(data);
+                    console.log(data.c.replace(/"+/g, "'"));
                 },
                 error: function(err) {
                     console.log(err);

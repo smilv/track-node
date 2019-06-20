@@ -30,6 +30,7 @@ app.post("/api/:type", function(req, res) {
                 age: 18
             }
         ],
+        c: '["g4", "g1", "g15", "g2", "g3", "g6", "g5"]',
         query: req.query,
         params: req.params,
         json: req.body

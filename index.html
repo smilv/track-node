@@ -8,7 +8,18 @@
         <script src="./jquery-2.1.4.min.js"></script>
     </head>
     <body>
+        <div>
+            <h3>测试分享</h3>
+            <img src="./img/logo.svg" alt="" />
+            <img style="width:100%;" src="//tu.duia.com/contentPic/20190411/5b5d0764-10b1-4b8a-82d8-a0e85d84db31.png" alt="" />
+        </div>
+        <button onclick="share()">分享到微博</button>
         <script>
+            function share() {
+                console.log(111);
+                window.location.href =
+                    "http://service.weibo.com/share/share.php?url=" + encodeURIComponent(location.href) + "&title=对啊拼团&searchPic=true"; //微博自动抓取图片用这个
+            }
             $.ajax({
                 type: "post",
                 url: "http://localhost:3000/api/search?a=1",

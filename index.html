@@ -16,18 +16,16 @@
         <button onclick="share()">分享到微博</button>
         <script>
             function share() {
-                console.log(111);
                 window.location.href =
                     "http://service.weibo.com/share/share.php?url=" + encodeURIComponent(location.href) + "&title=对啊拼团&searchPic=true"; //微博自动抓取图片用这个
             }
             $.ajax({
                 type: "post",
-                url: "http://localhost:3000/api/search?a=1",
+                url: "http://localhost:3000/api/demo/search?login=1",
                 contentType: "application/json",
                 data: JSON.stringify({ name: "xu", foo: "bar" }),
                 success: function(data) {
                     console.log(data);
-                    console.log(data.c.replace(/"+/g, "'"));
                 },
                 error: function(err) {
                     console.log(err);

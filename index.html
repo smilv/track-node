@@ -21,7 +21,7 @@
             }
             $.ajax({
                 type: "post",
-                url: "http://localhost:3000/api/demo/search?login=1",
+                url: "http://localhost:3000/user/demo/search?login=1",
                 contentType: "application/json",
                 data: JSON.stringify({ name: "xu", foo: "bar" }),
                 success: function(data) {

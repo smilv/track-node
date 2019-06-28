@@ -1,5 +1,5 @@
 var { app } = require("./connect");
-var user = require("./user");
+var user = require("./user/user");
 
 app.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -16,7 +16,7 @@ app.all("*", function(req, res, next) {
     next();
 });
 
-app.use("/user", user);
+app.use('/user',user);
 
 var server = app.listen(3000, function() {
     var host = server.address().address;

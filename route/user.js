@@ -16,7 +16,7 @@ router.post("/demo/:type", function(req, res) {
 
     // 从连接池中拿一个连接
     pool.getConnection((err, conn) => {
-        conn.query("SELECT * FROM user", (e, r) => {
+        conn.query("SELECT * FROM user_test", (e, r) => {
             res.status(200);
             res.json({
                 code: 200,

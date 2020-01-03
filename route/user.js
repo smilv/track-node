@@ -15,8 +15,8 @@ router.post("/demo/:type", function(req, res) {
     // });
 
     // 从连接池中拿一个连接
-    pool.getConnection((err, conn) => {
-        conn.query("SELECT * FROM user_test", (e, r) => {
+    pool.getConnection((err, connection) => {
+        connection.query("SELECT * FROM user_test", (e, r) => {
             res.status(200);
             res.json({
                 code: 200,
@@ -27,7 +27,7 @@ router.post("/demo/:type", function(req, res) {
                 json: req.body
             });
         });
-        pool.releaseConnection(conn); //释放连接
+        pool.releaseConnection(connection); //释放连接
     });
 });
 

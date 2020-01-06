@@ -18,7 +18,7 @@ var options = {
     queueLimit: 0 //最大连接等待数(0不限制)
 };
 
-// app.use(cors()); //cors跨域
+app.use(cors()); //cors跨域
 app.use(bodyParser.json()); //json请求
 app.use(bodyParser.urlencoded({ extended: false })); //表单请求
 

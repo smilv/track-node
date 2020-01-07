@@ -6,7 +6,12 @@ router.post("/create", function(req, res) {
     // 从连接池中拿一个连接
     pool.getConnection((err, connection) => {
         let sql = "INSERT INTO track SET ?";
-        let post = { ...req.body, server_time: new Date().toLocaleString() };
+        let post = {
+            position: req.body.position,
+            user_mobile: req.body.userMobile,
+            user_id: req.body.userId,
+            server_time: new Date().toLocaleString()
+        };
         connection.query(sql, post, (err, result) => {
             if (err) {
                 console.log(err);

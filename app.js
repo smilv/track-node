@@ -11,11 +11,12 @@ app.all("*", function(req, res, next) {
     if (isOriginAllowed(req.headers.origin)) {
         res.header("Access-Control-Allow-Origin", req.headers.origin);
         res.header("Access-Control-Allow-Credentials", "true");
+        next();
     } else {
         res.status(403);
-        return res.send({ msg: "非法请求" });
+        res.send({ msg: "非法请求" });
+        res.end();
     }
-    next();
 });
 
 app.use("/user", user);

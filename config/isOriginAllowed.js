@@ -1,4 +1,4 @@
-const whiteList = [/\.duia\.com/];
+const whiteList = [/^http:\/\/localhost/, /\.duia\.com/];
 
 function isString(s) {
     return typeof s === "string" || s instanceof String;

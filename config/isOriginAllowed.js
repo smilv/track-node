@@ -1,3 +1,4 @@
+//bin 2020/01/06
 const whiteList = [/^http:\/\/localhost/, /\.duia\.com/];
 
 function isString(s) {

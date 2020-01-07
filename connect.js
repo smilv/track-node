@@ -1,11 +1,13 @@
 var express = require("express");
 var bodyParser = require("body-parser"); //解析参数
+var cookieParser = require("cookie-parser");
 var cors = require("cors");
 var mysql = require("mysql");
+var mysqlConfig = require("./config/mysql.config");
 var app = express();
 var router = express.Router();
-var mysqlConfig = require("./config/mysql.config");
 
+app.use(cookieParser());
 app.use(bodyParser.json()); //json请求
 app.use(bodyParser.urlencoded({ extended: false })); //表单请求
 

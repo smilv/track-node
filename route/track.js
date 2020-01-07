@@ -18,7 +18,6 @@ router.post("/create", function(req, res) {
                 });
             }
         });
-
         pool.releaseConnection(connection); //释放连接
     });
 });

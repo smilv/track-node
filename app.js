@@ -1,7 +1,7 @@
 var { app } = require("./connect");
+var isOriginAllowed = require("./config/isOriginAllowed");
 var user = require("./route/user");
 var track = require("./route/track");
-var isOriginAllowed = require("./config/isOriginAllowed");
 
 app.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild");
@@ -11,10 +11,11 @@ app.all("*", function(req, res, next) {
     if (isOriginAllowed(req.headers.origin)) {
         res.header("Access-Control-Allow-Origin", req.headers.origin);
         res.header("Access-Control-Allow-Credentials", "true");
-        next();
     } else {
-        res.send({ code: -2, msg: "非法请求" });
+        res.status(403);
+        return res.send({ msg: "非法请求" });
     }
+    next();
 });
 
 app.use("/user", user);

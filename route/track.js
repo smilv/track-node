@@ -1,8 +1,10 @@
 // bin 2020/01/06
 var { router, pool } = require("../connect");
+var useragent = require("useragent");
 
 //埋点
 router.post("/create", function(req, res) {
+    let agent = useragent.parse(req.headers["user-agent"]).toString();
     // 从连接池中拿一个连接
     pool.getConnection((err, connection) => {
         let sql = "INSERT INTO track SET ?";
@@ -10,7 +12,8 @@ router.post("/create", function(req, res) {
             position: req.body.position,
             user_mobile: req.body.userMobile,
             user_id: req.body.userId,
-            server_time: new Date().toLocaleString()
+            server_time: new Date().toLocaleString(),
+            platform: agent
         };
         connection.query(sql, post, (err, result) => {
             if (err) {
@@ -41,9 +44,10 @@ router.post("/getAll", function(req, res) {
                     data.push({
                         id: element.id,
                         position: element.position,
-                        time: new Date(element.server_time).getTime(),
+                        time: element.server_time,
                         userMobile: element.user_mobile,
-                        userId: element.user_id
+                        userId: element.user_id,
+                        platform: element.platform
                     });
                 });
                 res.status(200);

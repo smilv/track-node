@@ -1,5 +1,5 @@
 var { app } = require("./connect");
-var isOriginAllowed = require("./config/isOriginAllowed");
+var isOriginAllowed = require("./config/is-origin-allowed");
 var user = require("./route/user");
 var track = require("./route/track");
 

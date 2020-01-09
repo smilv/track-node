@@ -13,7 +13,8 @@ router.post("/create", function(req, res) {
             user_mobile: req.body.userMobile,
             user_id: req.body.userId,
             server_time: new Date().toLocaleString(),
-            platform: agent
+            platform: agent,
+            ip: req.ip
         };
         connection.query(sql, post, (err, result) => {
             if (err) {

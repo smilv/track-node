@@ -19,6 +19,8 @@ app.all("*", function(req, res, next) {
     }
 });
 
+app.set("trust proxy", true); // 设置以后，req.ips是ip数组；如果未经过代理，则为[]. 若不设置，则req.ips恒为[]
+
 app.use("/user", user);
 app.use("/track", track);
 

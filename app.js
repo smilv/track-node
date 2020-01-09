@@ -1,5 +1,6 @@
 var { app } = require("./connect");
 var isOriginAllowed = require("./config/is-origin-allowed");
+var morgan = require("morgan");
 var user = require("./route/user");
 var track = require("./route/track");
 
@@ -20,6 +21,7 @@ app.all("*", function(req, res, next) {
 });
 
 app.set("trust proxy", true); // 设置以后，req.ips是ip数组；如果未经过代理，则为[]. 若不设置，则req.ips恒为[]
+app.use(morgan("short"));
 
 app.use("/user", user);
 app.use("/track", track);

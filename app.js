@@ -1,8 +1,10 @@
-var { app } = require("./connect");
-var isOriginAllowed = require("./config/is-origin-allowed");
-var morgan = require("morgan");
-var user = require("./route/user");
-var track = require("./route/track");
+const { app } = require("./connect");
+const isOriginAllowed = require("./config/is-origin-allowed");
+const morgan = require("morgan");
+const winston = require("winston");
+const expressWinston = require("express-winston");
+const user = require("./route/user");
+const track = require("./route/track");
 
 app.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild");
@@ -23,11 +25,37 @@ app.all("*", function(req, res, next) {
 app.set("trust proxy", true); // 设置以后，req.ips是ip数组；如果未经过代理，则为[]. 若不设置，则req.ips恒为[]
 app.use(morgan("short"));
 
+// 正常请求的日志
+app.use(
+    expressWinston.logger({
+        transports: [
+            // new winston.transports.Console(),
+            new winston.transports.File({
+                filename: "log/success.log"
+            })
+        ],
+        format: winston.format.combine(winston.format.colorize(), winston.format.json())
+    })
+);
+
 app.use("/user", user);
 app.use("/track", track);
 
-var server = app.listen(3000, function() {
-    var host = server.address().address;
-    var port = server.address().port;
+// 错误请求的日志
+app.use(
+    expressWinston.errorLogger({
+        transports: [
+            // new winston.transports.Console(),
+            new winston.transports.File({
+                filename: "log/error.log"
+            })
+        ],
+        format: winston.format.combine(winston.format.colorize(), winston.format.json())
+    })
+);
+
+const server = app.listen(3000, function() {
+    const host = server.address().address;
+    const port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port);
 });

@@ -1,4 +1,4 @@
-var { router, pool } = require("../connect");
+const { router, pool } = require("../connect");
 
 router.post("/demo/:type", function(req, res) {
     //直接使用

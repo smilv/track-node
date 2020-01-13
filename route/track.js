@@ -1,6 +1,6 @@
 // bin 2020/01/06
-var { router, pool } = require("../connect");
-var useragent = require("useragent");
+const { router, pool } = require("../connect");
+const useragent = require("useragent");
 
 //埋点
 router.post("/create", function(req, res) {

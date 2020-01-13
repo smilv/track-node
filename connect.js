@@ -1,16 +1,16 @@
-var express = require("express");
-var bodyParser = require("body-parser"); //解析参数
-var cookieParser = require("cookie-parser");
-var mysql = require("mysql");
-var mysqlConfig = require("./config/mysql.config");
-var app = express();
-var router = express.Router();
+const express = require("express");
+const bodyParser = require("body-parser"); //解析参数
+const cookieParser = require("cookie-parser");
+const mysql = require("mysql");
+const mysqlConfig = require("./config/mysql.config");
+const app = express();
+const router = express.Router();
 
 app.use(cookieParser());
 app.use(bodyParser.json()); //json请求
 app.use(bodyParser.urlencoded({ extended: false })); //表单请求
 
-var pool;
+let pool;
 reconn();
 
 function reconn() {

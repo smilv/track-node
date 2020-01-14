@@ -1,3 +1,4 @@
+// bin 2020/01/06
 module.exports = {
     host: "localhost",
     user: "root",

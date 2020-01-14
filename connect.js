@@ -1,3 +1,4 @@
+// bin 2019/06/26
 const express = require("express");
 const bodyParser = require("body-parser"); //解析参数
 const cookieParser = require("cookie-parser");

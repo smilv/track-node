@@ -1,3 +1,4 @@
+// bin 2019/06/10
 const { app } = require("./connect");
 const isOriginAllowed = require("./config/is-origin-allowed");
 const morgan = require("morgan");

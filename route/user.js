@@ -1,3 +1,4 @@
+// bin 2019/06/28
 const { router, pool } = require("../connect");
 
 router.post("/demo/:type", function(req, res) {

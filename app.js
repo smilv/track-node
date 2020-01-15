@@ -38,7 +38,7 @@ app.use(
         transports: [
             // new winston.transports.Console(),
             new winston.transports.File({
-                filename: "log/success.log"
+                filename: "logs/success.log"
             })
         ],
         format: winston.format.combine(winston.format.colorize(), winston.format.json())
@@ -54,7 +54,7 @@ app.use(
         transports: [
             new winston.transports.Console(),
             new winston.transports.File({
-                filename: "log/error.log"
+                filename: "logs/error.log"
             })
         ],
         format: winston.format.combine(winston.format.colorize(), winston.format.json())

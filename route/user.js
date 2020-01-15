@@ -1,4 +1,7 @@
-// bin 2019/06/28
+/**
+ * 用户-路由
+ * bin 2019/06/28
+ */
 const { router, pool } = require("../connect");
 
 router.post("/demo/:type", function(req, res) {
@@ -27,8 +30,8 @@ router.post("/demo/:type", function(req, res) {
                 params: req.params,
                 json: req.body
             });
+            connection.release(); //释放连接
         });
-        pool.releaseConnection(connection); //释放连接
     });
 });
 

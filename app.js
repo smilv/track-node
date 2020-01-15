@@ -1,4 +1,7 @@
-// bin 2019/06/10
+/**
+ * 主入口文件
+ * bin 2019/06/10
+ */
 const { app } = require("./connect");
 const isOriginAllowed = require("./config/is-origin-allowed");
 const morgan = require("morgan");
@@ -7,6 +10,9 @@ const expressWinston = require("express-winston");
 const user = require("./route/user");
 const track = require("./route/track");
 
+/**
+ * cors 跨域
+ */
 app.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild");
     res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
@@ -24,7 +30,7 @@ app.all("*", function(req, res, next) {
 });
 
 app.set("trust proxy", true); // 设置以后，req.ips是ip数组；如果未经过代理，则为[]. 若不设置，则req.ips恒为[]
-app.use(morgan("short"));
+app.use(morgan("short")); //控制台日志
 
 // 正常请求的日志
 app.use(
@@ -46,7 +52,7 @@ app.use("/track", track);
 app.use(
     expressWinston.errorLogger({
         transports: [
-            // new winston.transports.Console(),
+            new winston.transports.Console(),
             new winston.transports.File({
                 filename: "log/error.log"
             })

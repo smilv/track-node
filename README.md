@@ -1,8 +1,11 @@
-### jquery ajax 调用 nodejs 接口 操作 mysql
+### 基于mvc结构的web应用
+
+#### 技术栈
+- nodejs
+- express
+- mysql
 
 #### 命令行
 
 npm install  
 实时更新 npm start  
-运行 node app.js
-浏览器打开 index.html

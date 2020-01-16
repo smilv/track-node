@@ -1,10 +1,19 @@
-//bin 2020/01/06
+/**
+ * cors跨域白名单设置
+ * bin 2020/01/06
+ */
+const utils = require("../lib/utils");
+
+/**
+ * 白名单列表，支持正则
+ */
 const whiteList = [/^http:\/\/localhost/, /\.duia\.com/];
 
-function isString(s) {
-    return typeof s === "string" || s instanceof String;
-}
-
+/**
+ * 查看当前请求来源是否在白名单列表内
+ * @param {*} origin 当前请求头origin
+ * @param {*} allowedOrigin 白名单列表
+ */
 function isOriginAllowed(origin, allowedOrigin = whiteList) {
     if (Array.isArray(allowedOrigin)) {
         for (var i = 0; i < allowedOrigin.length; ++i) {
@@ -13,7 +22,7 @@ function isOriginAllowed(origin, allowedOrigin = whiteList) {
             }
         }
         return false;
-    } else if (isString(allowedOrigin)) {
+    } else if (utils.isString(allowedOrigin)) {
         return origin === allowedOrigin;
     } else if (allowedOrigin instanceof RegExp) {
         return allowedOrigin.test(origin);

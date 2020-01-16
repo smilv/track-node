@@ -2,37 +2,10 @@
  * 用户-路由
  * bin 2019/06/28
  */
-const { router, pool } = require("../connect");
+const express = require("express");
+const router = express.Router();
+const userController = require("../controllers/user");
 
-router.post("/demo/:type", function(req, res) {
-    //直接使用
-    // pool.query("SELECT * FROM user", (e, r) => {
-    //     res.status(200);
-    //     res.json({
-    //         code: 200,
-    //         data: r,
-    //         c: '["g4", "g1", "g15", "g2", "g3", "g6", "g5"]',
-    //         query: req.query,
-    //         params: req.params,
-    //         json: req.body
-    //     });
-    // });
-
-    // 从连接池中拿一个连接
-    pool.getConnection((err, connection) => {
-        connection.query("SELECT * FROM user_test", (e, r) => {
-            res.status(200);
-            res.json({
-                code: 200,
-                data: r,
-                c: '["g4", "g1", "g15", "g2", "g3", "g6", "g5"]',
-                query: req.query,
-                params: req.params,
-                json: req.body
-            });
-            connection.release(); //释放连接
-        });
-    });
-});
+router.post("/getAll", userController.getAll);
 
 module.exports = router;

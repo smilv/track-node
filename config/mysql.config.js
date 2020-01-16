@@ -1,4 +1,8 @@
-// bin 2020/01/06
+/**
+ * mysql 配置文件
+ * bin 2020/01/06
+ */
+
 module.exports = {
     host: "localhost",
     user: "root",

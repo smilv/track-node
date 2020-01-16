@@ -3,7 +3,7 @@
  * bin 2020/01/15
  */
 
-const { pool } = require("../connect");
+const pool = require("./mysql");
 
 module.exports = {
     /**

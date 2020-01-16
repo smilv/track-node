@@ -2,13 +2,15 @@
  * 主入口文件
  * bin 2019/06/10
  */
-const { app } = require("./connect");
-const isOriginAllowed = require("./config/is-origin-allowed");
+const express = require("express");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const winston = require("winston");
 const expressWinston = require("express-winston");
-const user = require("./route/user");
-const track = require("./route/track");
+const isOriginAllowed = require("./config/is-origin-allowed");
+const route = require("./route");
+const app = express();
 
 /**
  * cors 跨域
@@ -30,6 +32,11 @@ app.all("*", function(req, res, next) {
 });
 
 app.set("trust proxy", true); // 设置以后，req.ips是ip数组；如果未经过代理，则为[]. 若不设置，则req.ips恒为[]
+
+app.use(cookieParser()); //操作cookie
+app.use(bodyParser.json()); //json请求
+app.use(bodyParser.urlencoded({ extended: false })); //表单请求
+
 app.use(morgan("short")); //控制台日志
 
 // 正常请求的日志
@@ -45,8 +52,8 @@ app.use(
     })
 );
 
-app.use("/user", user);
-app.use("/track", track);
+//路由
+route(app);
 
 // 错误请求的日志
 app.use(

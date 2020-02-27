@@ -12,7 +12,7 @@ module.exports = {
         res.status(200);
         res.json({
             code: 200,
-            data: req.file.path,
+            data: req.file.destination + "/" + req.file.filename,
             msg: "success"
         });
     }

@@ -8,7 +8,6 @@ module.exports = {
      * 上传文件
      */
     upload: function(req, res) {
-        console.log(req.file);
         res.status(200);
         res.json({
             code: 200,

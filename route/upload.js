@@ -7,7 +7,9 @@ const router = express.Router();
 const uploadController = require("../controllers/upload");
 const upload = require("../lib/upload");
 
-//上传文件
+/**
+ * imgFile 为一个以 imgFile 命名的文件
+ */
 router.post("/", upload.single("imgFile"), uploadController.upload);
 
 module.exports = router;

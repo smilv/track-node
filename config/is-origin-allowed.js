@@ -16,7 +16,7 @@ const whiteList = [/^http:\/\/localhost/, /\.duia\.com/];
  */
 function isOriginAllowed(origin, allowedOrigin = whiteList) {
     if (Array.isArray(allowedOrigin)) {
-        for (var i = 0; i < allowedOrigin.length; ++i) {
+        for (var i = 0; i < allowedOrigin.length; i++) {
             if (isOriginAllowed(origin, allowedOrigin[i])) {
                 return true;
             }

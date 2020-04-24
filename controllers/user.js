@@ -22,7 +22,6 @@ module.exports = {
                 });
             },
             error => {
-                console.log(error);
                 res.status(500);
                 res.json({
                     code: 500,

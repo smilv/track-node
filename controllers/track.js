@@ -41,7 +41,6 @@ module.exports = {
                 });
             },
             error => {
-                console.log(error);
                 res.status(500);
                 res.json({
                     code: 500,
@@ -74,6 +73,41 @@ module.exports = {
                 res.json({
                     code: 200,
                     data: data
+                });
+            },
+            error => {
+                res.status(500);
+                res.json({
+                    code: 500,
+                    error: error
+                });
+            }
+        );
+    },
+    /**
+     * 根据年份获取统计量
+     */
+    getCount: function(req, res) {
+        let post = {
+            year: req.body.year
+        };
+        /**
+         * year必传
+         */
+        if (!post.year) {
+            res.status(400);
+            res.json({
+                code: 400,
+                msg: "请求错误"
+            });
+            return;
+        }
+        trackModel.getCount(post).then(
+            result => {
+                res.status(200);
+                res.json({
+                    code: 200,
+                    data: result
                 });
             },
             error => {

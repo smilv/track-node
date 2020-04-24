@@ -43,5 +43,27 @@ module.exports = {
                 });
             });
         });
+    },
+    /**
+     * 根据年份获取统计量
+     * @param {Object} post 数据
+     */
+    getCount: function(post) {
+        return new Promise((resolve, reject) => {
+            pool.getConnection((err, connection) => {
+                let sql =
+                    "SELECT COUNT(*) as count,MONTH(server_time) as month FROM track WHERE YEAR(server_time) =" +
+                    post.year +
+                    " GROUP BY MONTH(server_time)";
+                connection.query(sql, (err, result) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                    connection.release();
+                });
+            });
+        });
     }
 };

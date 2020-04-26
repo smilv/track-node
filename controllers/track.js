@@ -104,6 +104,12 @@ module.exports = {
         }
         trackModel.getCount(post).then(
             result => {
+                //月份不足一年，补全其余月份
+                let resLen = result.length;
+                for (let i = resLen + 1; i <= 12; i++) {
+                    result.push({ month: i });
+                }
+                result.map(item => (item.month += "月"));
                 res.status(200);
                 res.json({
                     code: 200,

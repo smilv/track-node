@@ -52,7 +52,8 @@ module.exports = {
         return new Promise((resolve, reject) => {
             pool.getConnection((err, connection) => {
                 let sql =
-                    "SELECT COUNT(*) as count,MONTH(server_time) as month FROM track WHERE YEAR(server_time) =" +
+                    "SELECT COUNT(*) as pv,COUNT(DISTINCT user_id) as uv,COUNT(DISTINCT ip) as ip,MONTH(server_time) as month FROM track" +
+                    " WHERE YEAR(server_time) =" +
                     post.year +
                     " GROUP BY MONTH(server_time)";
                 connection.query(sql, (err, result) => {

@@ -1,6 +1,9 @@
-/**
- * 埋点-控制器
- * bin 2020/01/15
+/*
+ * @Description: 埋点-控制器
+ * @Autor: bin
+ * @Date: 2020-01-15 11:06:16
+ * @LastEditors: bin
+ * @LastEditTime: 2020-05-06 17:53:29
  */
 
 const useragent = require("useragent");

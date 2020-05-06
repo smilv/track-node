@@ -1,7 +1,11 @@
-/**
- * 文件上传-路由
- * bin 2020/02/26
+/*
+ * @Description: 文件上传-路由
+ * @Autor: bin
+ * @Date: 2020-02-26 16:10:12
+ * @LastEditors: bin
+ * @LastEditTime: 2020-05-06 17:55:13
  */
+
 const express = require("express");
 const router = express.Router();
 const uploadController = require("../controllers/upload");

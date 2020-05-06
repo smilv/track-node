@@ -1,8 +1,10 @@
-/**
- * 埋点-模型
- * bin 2020/01/15
+/*
+ * @Description: 埋点-模型
+ * @Autor: bin
+ * @Date: 2020-01-15 11:08:33
+ * @LastEditors: bin
+ * @LastEditTime: 2020-05-06 17:54:41
  */
-
 const pool = require("./mysql");
 
 module.exports = {

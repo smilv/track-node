@@ -1,6 +1,9 @@
-/**
- * 用户-控制器
- * bin 2020/01/16
+/*
+ * @Description: 用户-控制器
+ * @Autor: bin
+ * @Date: 2020-01-16 16:00:54
+ * @LastEditors: bin
+ * @LastEditTime: 2020-05-06 17:54:06
  */
 const userModel = require("../models/user");
 

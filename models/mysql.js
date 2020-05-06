@@ -1,6 +1,9 @@
-/**
- * mysql连接
- * bin 2019/06/26
+/*
+ * @Description: mysql连接
+ * @Autor: bin
+ * @Date: 2020-01-09 19:08:09
+ * @LastEditors: bin
+ * @LastEditTime: 2020-05-06 17:54:32
  */
 
 const mysql = require("mysql");

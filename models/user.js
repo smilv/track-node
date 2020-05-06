@@ -1,6 +1,9 @@
-/**
- * 用户-模型
- * bin 2020/01/16
+/*
+ * @Description: 用户-模型
+ * @Autor: bin
+ * @Date: 2020-01-16 16:01:25
+ * @LastEditors: bin
+ * @LastEditTime: 2020-05-06 17:54:48
  */
 
 const pool = require("./mysql");

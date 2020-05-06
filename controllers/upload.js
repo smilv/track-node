@@ -1,6 +1,9 @@
-/**
- * 文件上传-控制器
- * bin 2020/02/26
+/*
+ * @Description: 文件上传-控制器
+ * @Autor: bin
+ * @Date: 2020-02-26 16:43:06
+ * @LastEditors: bin
+ * @LastEditTime: 2020-05-06 17:53:57
  */
 
 module.exports = {

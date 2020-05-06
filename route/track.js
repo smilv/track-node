@@ -1,7 +1,11 @@
-/**
- * 埋点-路由
- * bin 2020/01/06
+/*
+ * @Description: 埋点-路由
+ * @Autor: bin
+ * @Date: 2020-01-06 10:47:12
+ * @LastEditors: bin
+ * @LastEditTime: 2020-05-06 17:55:06
  */
+
 const express = require("express");
 const router = express.Router();
 const trackController = require("../controllers/track");

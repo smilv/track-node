@@ -1,7 +1,11 @@
-/**
- * 主入口文件
- * bin 2019/06/10
+/*
+ * @Description: 主入口文件
+ * @Autor: bin
+ * @Date: 2019-06-28 14:26:01
+ * @LastEditors: bin
+ * @LastEditTime: 2020-05-06 17:55:48
  */
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");

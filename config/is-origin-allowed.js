@@ -1,6 +1,9 @@
-/**
- * cors跨域白名单设置
- * bin 2020/01/06
+/*
+ * @Description: cors跨域白名单设置
+ * @Autor: bin
+ * @Date: 2020-01-06 18:28:19
+ * @LastEditors: bin
+ * @LastEditTime: 2020-05-06 17:53:10
  */
 const utils = require("../lib/utils");
 

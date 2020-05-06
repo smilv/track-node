@@ -1,6 +1,9 @@
-/**
- * mysql 配置文件
- * bin 2020/01/06
+/*
+ * @Description: mysql 配置文件
+ * @Autor: bin
+ * @Date: 2020-01-06 17:54:12
+ * @LastEditors: bin
+ * @LastEditTime: 2020-05-06 17:53:20
  */
 
 module.exports = {

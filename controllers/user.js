@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:00:54
  * @LastEditors: bin
- * @LastEditTime: 2020-05-07 18:41:56
+ * @LastEditTime: 2020-05-07 18:53:59
  */
 const userModel = require("../models/user");
 const regex = require("../lib/regex");
@@ -19,6 +19,7 @@ module.exports = {
             regtime: new Date().toLocaleString()
         };
         let error = null;
+        // 未传参也按格式不正确处理
         if (!post.mobile || !regex.mobile.test(post.mobile)) {
             error = {
                 code: 5002,

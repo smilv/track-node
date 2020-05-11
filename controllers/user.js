@@ -3,29 +3,28 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:00:54
  * @LastEditors: bin
- * @LastEditTime: 2020-05-07 18:53:59
+ * @LastEditTime: 2020-05-11 17:13:45
  */
 const userModel = require("../models/user");
 const regex = require("../lib/regex");
+const Identicon = require("identicon.js");
+const fs = require("fs");
+const utils = require("../lib/utils");
 
 module.exports = {
     /**
      * 注册
      */
     register: function(req, res) {
-        let post = {
-            mobile: req.body.mobile,
-            password: req.body.password,
-            regtime: new Date().toLocaleString()
-        };
+        let body = req.body;
         let error = null;
         // 未传参也按格式不正确处理
-        if (!post.mobile || !regex.mobile.test(post.mobile)) {
+        if (!body.mobile || !regex.mobile.test(body.mobile)) {
             error = {
                 code: 5002,
                 msg: "手机号格式不正确"
             };
-        } else if (!post.password || !regex.password.test(post.password)) {
+        } else if (!body.password || !regex.password.test(body.password)) {
             error = {
                 code: 5003,
                 msg: "密码格式不正确"
@@ -39,8 +38,25 @@ module.exports = {
             });
             return;
         }
+
+        let post = {
+            mobile: body.mobile,
+            password: body.password,
+            regtime: new Date().toLocaleString(),
+            avatar: "/avatar/" + Date.now() + ".png"
+        };
         userModel.register(post).then(
             result => {
+                //保存默认头像
+                let base64 = new Identicon(utils.md5(post.mobile), 420).toString();
+                let base64Buffer = new Buffer(base64, "base64");
+                //avatar文件夹不存在，创建一个
+                if (!fs.existsSync("/uploads/avatar")) {
+                    fs.mkdirSync("/uploads/avatar");
+                }
+                fs.writeFile("/uploads" + post.avatar, base64Buffer, err => {
+                    if (err) throw err;
+                });
                 res.status(200);
                 res.json({
                     code: 200,

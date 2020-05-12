@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-15 11:06:16
  * @LastEditors: bin
- * @LastEditTime: 2020-05-06 17:53:29
+ * @LastEditTime: 2020-05-12 20:31:30
  */
 
 const useragent = require("useragent");
@@ -91,6 +91,7 @@ module.exports = {
      * 根据年份获取统计量
      */
     getCount: function(req, res) {
+        console.log(req.session.user);
         let post = {
             year: req.body.year
         };

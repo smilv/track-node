@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:00:54
  * @LastEditors: bin
- * @LastEditTime: 2020-05-11 17:13:45
+ * @LastEditTime: 2020-05-12 20:29:50
  */
 const userModel = require("../models/user");
 const regex = require("../lib/regex");
@@ -13,7 +13,17 @@ const utils = require("../lib/utils");
 
 module.exports = {
     /**
-     * 注册
+     * @description: 登录
+     */
+    login: function(req, res) {
+        req.session.user = "张三";
+        res.status(200);
+        res.json({
+            code: 200
+        });
+    },
+    /**
+     * @description: 注册
      */
     register: function(req, res) {
         let body = req.body;
@@ -48,7 +58,7 @@ module.exports = {
         userModel.register(post).then(
             result => {
                 //保存默认头像
-                let base64 = new Identicon(utils.md5(post.mobile), 420).toString();
+                let base64 = new Identicon(utils.md5(post.mobile), 128).toString();
                 let base64Buffer = new Buffer(base64, "base64");
                 //avatar文件夹不存在，创建一个
                 if (!fs.existsSync("/uploads/avatar")) {

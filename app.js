@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2019-06-28 14:26:01
  * @LastEditors: bin
- * @LastEditTime: 2020-05-06 17:55:48
+ * @LastEditTime: 2020-05-12 20:35:10
  */
 
 const express = require("express");
@@ -12,6 +12,7 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const winston = require("winston");
 const expressWinston = require("express-winston");
+const session = require("express-session");
 const isOriginAllowed = require("./config/is-origin-allowed");
 const route = require("./route");
 const app = express();
@@ -40,6 +41,14 @@ app.set("trust proxy", true); // 设置以后，req.ips是ip数组；如果未�
 app.use(cookieParser()); //操作cookie
 app.use(bodyParser.json()); //json请求
 app.use(bodyParser.urlencoded({ extended: false })); //表单请求
+app.use(
+    session({
+        secret: "keyboard cat", //String 类型的字符串，作为服务器端生成 session 的签名
+        resave: false,
+        cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 }, //过期时间3天 单位 毫秒
+        saveUninitialized: true
+    })
+);
 
 app.use(morgan("short")); //控制台日志
 

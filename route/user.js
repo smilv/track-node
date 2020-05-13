@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2019-06-28 14:26:01
  * @LastEditors: bin
- * @LastEditTime: 2020-05-12 17:17:46
+ * @LastEditTime: 2020-05-13 10:50:53
  */
 
 const express = require("express");
@@ -12,6 +12,9 @@ const userController = require("../controllers/user");
 
 //登录
 router.post("/login", userController.login);
+
+//退出登录
+router.post("/logout", userController.logout);
 
 //注册
 router.post("/register", userController.register);

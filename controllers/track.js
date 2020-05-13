@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-15 11:06:16
  * @LastEditors: bin
- * @LastEditTime: 2020-05-12 20:31:30
+ * @LastEditTime: 2020-05-13 17:43:20
  */
 
 const useragent = require("useragent");
@@ -28,7 +28,6 @@ module.exports = {
          * position 不能为空
          */
         if (!post.position || utils.trim(post.position) == "") {
-            res.status(400);
             res.json({
                 code: 400,
                 msg: "请求错误"
@@ -37,14 +36,12 @@ module.exports = {
         }
         trackModel.create(post).then(
             result => {
-                res.status(200);
                 res.json({
                     code: 200,
                     msg: "success"
                 });
             },
             error => {
-                res.status(500);
                 res.json({
                     code: 500,
                     error: error
@@ -72,14 +69,12 @@ module.exports = {
                         platform: element.platform
                     });
                 });
-                res.status(200);
                 res.json({
                     code: 200,
                     data: data
                 });
             },
             error => {
-                res.status(500);
                 res.json({
                     code: 500,
                     error: error
@@ -99,7 +94,6 @@ module.exports = {
          * year必传
          */
         if (!post.year) {
-            res.status(400);
             res.json({
                 code: 400,
                 msg: "请求错误"
@@ -114,15 +108,12 @@ module.exports = {
                     result.push({ month: i });
                 }
                 result.map(item => (item.month += "月"));
-                res.status(200);
                 res.json({
                     code: 200,
                     data: result
                 });
             },
             error => {
-                console.log(error);
-                res.status(500);
                 res.json({
                     code: 500,
                     error: error

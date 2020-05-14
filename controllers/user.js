@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:00:54
  * @LastEditors: bin
- * @LastEditTime: 2020-05-13 18:34:00
+ * @LastEditTime: 2020-05-14 15:43:45
  */
 const userModel = require("../models/user");
 const regex = require("../lib/regex");
@@ -139,5 +139,26 @@ module.exports = {
                 });
             }
         );
+    },
+    /**
+     * @description: 根据session获取用户信息
+     */
+    info: function(req, res) {
+        let user = req.session.user;
+        if (user) {
+            res.json({
+                code: 200,
+                data: {
+                    id: user.id,
+                    mobile: user.mobile,
+                    username: user.username,
+                    avatar: user.avatar
+                }
+            });
+        } else {
+            res.json({
+                code: 400
+            });
+        }
     }
 };

@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:00:54
  * @LastEditors: bin
- * @LastEditTime: 2020-05-14 15:43:45
+ * @LastEditTime: 2020-05-18 16:26:22
  */
 const userModel = require("../models/user");
 const regex = require("../lib/regex");
@@ -106,6 +106,7 @@ module.exports = {
             mobile: body.mobile,
             password: body.password,
             regtime: new Date().toLocaleString(),
+            username: body.mobile,
             avatar: "/avatar/" + Date.now() + ".png"
         };
         userModel.register(post).then(

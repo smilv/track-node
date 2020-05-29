@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-02-26 16:43:06
  * @LastEditors: bin
- * @LastEditTime: 2020-05-13 17:43:28
+ * @LastEditTime: 2020-05-29 11:48:43
  */
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
     upload: function(req, res) {
         res.json({
             code: 200,
-            data: req.file.destination + "/" + req.file.filename,
+            data: "/" + req.file.filename,
             msg: "success"
         });
     }

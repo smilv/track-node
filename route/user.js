@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2019-06-28 14:26:01
  * @LastEditors: bin
- * @LastEditTime: 2020-05-14 15:31:36
+ * @LastEditTime: 2020-06-04 16:29:42
  */
 
 const express = require("express");
@@ -21,5 +21,8 @@ router.post("/register", userController.register);
 
 //用户信息
 router.post("/info", userController.info);
+
+//更新用户信息
+router.post("/update", userController.update);
 
 module.exports = router;

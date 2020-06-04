@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:01:25
  * @LastEditors: bin
- * @LastEditTime: 2020-05-13 17:21:48
+ * @LastEditTime: 2020-06-04 19:53:46
  */
 
 const pool = require("./mysql");
@@ -36,6 +36,34 @@ module.exports = {
         return new Promise((resolve, reject) => {
             pool.getConnection((err, connection) => {
                 let sql = "INSERT INTO user SET ?";
+                connection.query(sql, post, (err, result) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                    connection.release(); //释放连接
+                });
+            });
+        });
+    },
+    /**
+     * @description: 更新用户昵称、生日信息
+     * @param {Object} post
+     * @param {Number} userId 用户id
+     */
+    update: function(post, userId) {
+        console.log(post.birthday);
+        console.log(typeof post.birthday);
+
+        return new Promise((resolve, reject) => {
+            pool.getConnection((err, connection) => {
+                let sql;
+                if (post.birthday) {
+                    sql = `UPDATE user SET username='${post.username}', birthday='${post.birthday}' WHERE id=${userId}`;
+                } else {
+                    sql = `UPDATE user SET username='${post.username}', birthday=null WHERE id=${userId}`;
+                }
                 connection.query(sql, post, (err, result) => {
                     if (err) {
                         reject(err);

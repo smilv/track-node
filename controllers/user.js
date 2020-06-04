@@ -3,13 +3,14 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:00:54
  * @LastEditors: bin
- * @LastEditTime: 2020-05-18 16:26:22
+ * @LastEditTime: 2020-06-04 19:52:21
  */
 const userModel = require("../models/user");
 const regex = require("../lib/regex");
 const Identicon = require("identicon.js");
 const fs = require("fs");
 const utils = require("../lib/utils");
+const moment = require("moment");
 
 module.exports = {
     /**
@@ -153,13 +154,39 @@ module.exports = {
                     id: user.id,
                     mobile: user.mobile,
                     username: user.username,
-                    avatar: user.avatar
+                    avatar: user.avatar,
+                    birthday: user.birthday
                 }
             });
         } else {
             res.json({
-                code: 400
+                code: 400,
+                msg: "用户未登录"
             });
         }
+    },
+    /**
+     * @description: 更新用户信息
+     */
+    update: function(req, res) {
+        let user = req.session.user;
+        let body = req.body;
+        let post = {
+            username: body.username,
+            birthday: body.birthday ? moment(body.birthday).format("YYYY-MM-DD") : null
+        };
+        if (!user) {
+            res.json({
+                code: 400,
+                msg: "用户未登录"
+            });
+            return;
+        }
+        userModel.update(post, user.id).then(result => {
+            console.log(result);
+            res.json({
+                code: 200
+            });
+        });
     }
 };

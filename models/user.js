@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:01:25
  * @LastEditors: bin
- * @LastEditTime: 2020-06-04 19:53:46
+ * @LastEditTime: 2020-06-05 10:53:04
  */
 
 const pool = require("./mysql");
@@ -53,9 +53,6 @@ module.exports = {
      * @param {Number} userId 用户id
      */
     update: function(post, userId) {
-        console.log(post.birthday);
-        console.log(typeof post.birthday);
-
         return new Promise((resolve, reject) => {
             pool.getConnection((err, connection) => {
                 let sql;
@@ -64,6 +61,8 @@ module.exports = {
                 } else {
                     sql = `UPDATE user SET username='${post.username}', birthday=null WHERE id=${userId}`;
                 }
+                // let sql = `UPDATE user SET username='${post.username}', birthday=${post.birthday ? `'${post.birthday}'` : null} WHERE id=${userId}`;
+
                 connection.query(sql, post, (err, result) => {
                     if (err) {
                         reject(err);

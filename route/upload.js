@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-02-26 16:10:12
  * @LastEditors: bin
- * @LastEditTime: 2020-05-06 17:55:13
+ * @LastEditTime: 2020-06-05 17:33:04
  */
 
 const express = require("express");
@@ -12,8 +12,8 @@ const uploadController = require("../controllers/upload");
 const upload = require("../lib/upload");
 
 /**
- * imgFile 为一个以 imgFile 命名的文件
+ * file 为一个以 file 命名的文件
  */
-router.post("/", upload.single("imgFile"), uploadController.upload);
+router.post("/", upload.single("file"), uploadController.upload);
 
 module.exports = router;

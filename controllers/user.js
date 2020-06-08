@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:00:54
  * @LastEditors: bin
- * @LastEditTime: 2020-06-04 19:52:21
+ * @LastEditTime: 2020-06-08 18:43:06
  */
 const userModel = require("../models/user");
 const regex = require("../lib/regex");
@@ -172,6 +172,7 @@ module.exports = {
         let user = req.session.user;
         let body = req.body;
         let post = {
+            avatar: body.avatar,
             username: body.username,
             birthday: body.birthday ? moment(body.birthday).format("YYYY-MM-DD") : null
         };
@@ -183,9 +184,13 @@ module.exports = {
             return;
         }
         userModel.update(post, user.id).then(result => {
-            console.log(result);
-            res.json({
-                code: 200
+            let user = req.session.user;
+            userModel.findUser({ key: "id", value: user.id }).then(result => {
+                req.session.user = result[0];
+                res.json({
+                    code: 200,
+                    data: result[0]
+                });
             });
         });
     }

@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:01:25
  * @LastEditors: bin
- * @LastEditTime: 2020-06-05 10:53:04
+ * @LastEditTime: 2020-06-08 18:33:06
  */
 
 const pool = require("./mysql");
@@ -57,11 +57,11 @@ module.exports = {
             pool.getConnection((err, connection) => {
                 let sql;
                 if (post.birthday) {
-                    sql = `UPDATE user SET username='${post.username}', birthday='${post.birthday}' WHERE id=${userId}`;
+                    sql = `UPDATE user SET avatar='${post.avatar}', username='${post.username}', birthday='${post.birthday}' WHERE id=${userId}`;
                 } else {
-                    sql = `UPDATE user SET username='${post.username}', birthday=null WHERE id=${userId}`;
+                    sql = `UPDATE user SET avatar='${post.avatar}', username='${post.username}', birthday=null WHERE id=${userId}`;
                 }
-                // let sql = `UPDATE user SET username='${post.username}', birthday=${post.birthday ? `'${post.birthday}'` : null} WHERE id=${userId}`;
+                // let sql = `UPDATE user SET avatar='${post.avatar}', username='${post.username}', birthday=${post.birthday ? `'${post.birthday}'` : null} WHERE id=${userId}`;
 
                 connection.query(sql, post, (err, result) => {
                     if (err) {

@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-02-26 16:43:06
  * @LastEditors: bin
- * @LastEditTime: 2020-06-05 17:26:37
+ * @LastEditTime: 2020-06-08 18:30:59
  */
 
 module.exports = {
@@ -11,9 +11,10 @@ module.exports = {
      * 上传文件
      */
     upload: function(req, res) {
+        let folder = req.body.folder + "/" || "";
         res.json({
             code: 200,
-            data: "/" + req.file.filename,
+            data: "/" + folder + req.file.filename,
             msg: "success"
         });
     }

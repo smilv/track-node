@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-15 11:08:33
  * @LastEditors: bin
- * @LastEditTime: 2020-05-06 17:54:41
+ * @LastEditTime: 2020-06-16 16:37:56
  */
 const pool = require("./mysql");
 
@@ -47,17 +47,14 @@ module.exports = {
         });
     },
     /**
-     * 根据年份获取统计量
+     * 根据年份、位置获取统计量
      * @param {Object} post 数据
      */
     getCount: function(post) {
         return new Promise((resolve, reject) => {
             pool.getConnection((err, connection) => {
-                let sql =
-                    "SELECT COUNT(*) as pv,COUNT(DISTINCT user_id) as uv,COUNT(DISTINCT ip) as ip,MONTH(server_time) as month FROM track" +
-                    " WHERE YEAR(server_time) =" +
-                    post.year +
-                    " GROUP BY MONTH(server_time)";
+                let sql = `SELECT COUNT(*) as pv,COUNT(DISTINCT user_id) as uv,COUNT(DISTINCT ip) as ip,MONTH(server_time) as month FROM track WHERE YEAR(server_time)=${post.year} AND position='${post.position}' GROUP BY MONTH(server_time)`;
+
                 connection.query(sql, (err, result) => {
                     if (err) {
                         reject(err);

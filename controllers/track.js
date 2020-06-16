@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-15 11:06:16
  * @LastEditors: bin
- * @LastEditTime: 2020-06-09 15:38:03
+ * @LastEditTime: 2020-06-16 17:33:01
  */
 
 const useragent = require("useragent");
@@ -84,16 +84,15 @@ exports.getAll = function(req, res) {
 };
 
 /**
- * 根据年份获取统计量
+ * 根据年份、位置获取统计量
  */
 exports.getCount = function(req, res) {
+    let body = req.body;
     let post = {
-        year: req.body.year
+        year: body.year,
+        position: body.position
     };
-    /**
-     * year必传
-     */
-    if (!post.year) {
+    if (!post.year || !post.position) {
         res.json({
             code: 400,
             msg: "请求错误"
@@ -102,15 +101,25 @@ exports.getCount = function(req, res) {
     }
     trackModel.getCount(post).then(
         result => {
-            //月份不足一年，补全其余月份
-            let resLen = result.length;
-            for (let i = resLen + 1; i <= 12; i++) {
-                result.push({ month: i });
+            //补全其余月份
+            let data = [];
+            if (result.length < 12) {
+                for (let i = 1; i <= 12; i++) {
+                    let shift = result[0];
+                    let obj = { month: i };
+                    if (shift && shift.month == i) {
+                        obj = shift;
+                        result.shift();
+                    }
+                    data.push(obj);
+                }
+            } else {
+                data = result;
             }
-            result.map(item => (item.month += "月"));
+            data.map(item => (item.month += "月"));
             res.json({
                 code: 200,
-                data: result
+                data: data
             });
         },
         error => {

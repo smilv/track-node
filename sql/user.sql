@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80016
 File Encoding         : 65001
 
-Date: 2020-06-04 16:55:07
+Date: 2020-06-23 14:34:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,10 +23,11 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mobile` varchar(255) NOT NULL,
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `salt` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(255) NOT NULL,
   `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `regtime` datetime NOT NULL,
   `birthday` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mobile` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;

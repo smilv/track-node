@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:00:54
  * @LastEditors: bin
- * @LastEditTime: 2020-06-09 15:36:51
+ * @LastEditTime: 2020-06-23 16:17:31
  */
 const userModel = require("../models/user");
 const regex = require("../lib/regex");
@@ -40,7 +40,7 @@ exports.login = function(req, res) {
     // 根据手机号查找用户
     userModel.findUser({ key: "mobile", value: body.mobile }).then(result => {
         if (result.length > 0) {
-            if (result[0].password == body.password) {
+            if (utils.md5(body.password + result[0].salt) == result[0].password) {
                 req.session.user = result[0];
                 res.json({
                     code: 200
@@ -81,7 +81,7 @@ exports.logout = function(req, res) {
 /**
  * @description: 注册
  */
-exports.register = function(req, res) {
+exports.register = async function(req, res) {
     let body = req.body;
     let error = null;
     // 未传参也按格式不正确处理
@@ -103,10 +103,14 @@ exports.register = function(req, res) {
         });
         return;
     }
-
+    const bytes = await utils.randomBytes(16).catch(e => {});
+    // randomBytes为reject时，bytes为undefined
+    // 这时，我们取"undefined"为盐值
+    const salt = bytes ? bytes.toString("hex") : "undefined";
     let post = {
         mobile: body.mobile,
-        password: body.password,
+        salt: salt,
+        password: utils.md5(body.password + salt),
         regtime: new Date().toLocaleString(),
         username: body.mobile,
         avatar: "/avatar/" + Date.now() + ".png"

@@ -3,7 +3,7 @@
  * @Autor: bin
  * @Date: 2020-01-16 16:01:25
  * @LastEditors: bin
- * @LastEditTime: 2020-06-09 14:44:32
+ * @LastEditTime: 2020-06-30 18:50:48
  */
 
 const pool = require("./mysql");
@@ -16,7 +16,7 @@ module.exports = {
     findUser: function(post) {
         return new Promise((resolve, reject) => {
             pool.getConnection((err, connection) => {
-                let sql = `SELECT * FROM user WHERE ${post.key}='${post.value}'`;
+                let sql = `SELECT * FROM user WHERE ${post.key}=${post.value}`;
                 connection.query(sql, post, (err, result) => {
                     if (err) {
                         reject(err);

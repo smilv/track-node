@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "start": "hotnode app.js"
+        "start": "nodemon app.js"
     },
     "devDependencies": {
         "body-parser": "^1.19.0",
@@ -9,6 +9,7 @@
         "express": "^4.17.1",
         "express-session": "^1.17.1",
         "express-winston": "^4.0.2",
+        "nodemon": "^2.0.0",
         "identicon.js": "^2.3.3",
         "moment": "^2.26.0",
         "morgan": "^1.9.1",
